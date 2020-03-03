@@ -33,6 +33,12 @@
       <el-button v-on:click.prevent='submit2'>111</el-button>
       <el-button @click='submit2'>33333333</el-button>
       <el-button @dblclick='submit2'>4444444444</el-button>
+
+      <el-button @click="addcounter">{{counter}}</el-button>
+      <el-input @keyup.space="addcounter2" v-model="counter"></el-input>
+      <el-radio v-model="radio1" border  label="Google">Google</el-radio>
+      <el-radio v-model="radio1" border  label="Baidu">Baidu</el-radio>
+      <h2>当前选择:{{radio1}}</h2>
     </el-form>
     </el-container>
   </div>
@@ -48,6 +54,8 @@ export default {
       show2: false,
       show3: true,
       keep: '123',
+      counter: 12,
+      radio1: 'Google',
       sites: [
         {
           id: '1111',
@@ -111,8 +119,21 @@ export default {
     }
   },
   methods: {
+    addcounter: function (event) {
+      // this这里是Vue实例
+      alert(this.counter + 1)
+      // event是DOM结构
+      if (event) {
+        alert(event.target.tagName)
+        alert(event.target.localName)
+      }
+    },
+    addcounter2: function () {
+      // this这里是Vue实例
+      this.counter += 1
+    },
     test: function () {
-      alert(1111)
+      // alert(1111)
       console.log(this.$el)
       // 所有的元素
       console.log(this.$components)
