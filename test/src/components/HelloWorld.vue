@@ -1,7 +1,16 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
+    <h1>{{ msg.split("").reverse().join(",") }}</h1>
+    <h1>{{ cal }}</h1>
+    <h2>{{ msg | strtoupper }}</h2>
+    <h2>{{ msg | indexof }}</h2>
+    <h2>{{ msg | search }}</h2>
+    <h2>{{ msg | substr }}</h2>
+    <h2>{{ msg | substring }}</h2>
+    <h2>{{ msg | slice }}</h2>
+    <h2>{{ msg | replace }}</h2>
+    <h2>{{ msg | replaceAll }}</h2>
+    <h2>{{ msg | match }}</h2>
     <ul>
       <li v-bind:class="{'class1':use}">
         <a @click="link2">
@@ -9,9 +18,21 @@
         </a>
       </li>
     </ul>
+    <div v-html="message"></div>
+    <div v-show="show">22222222222222</div>
+    <div v-if="show">333333333</div>
+    <div v-else-if="show2">555555555555</div>
+    <div v-else-if="show3">6666666666</div>
+    <div v-else>333333333</div>
+    <ul v-for="site in sites" :key="site.id">
+      <li>{{site.name}}</li>
+    </ul>
     <el-container style="height: 500px; border: 1px solid #eee">
     <el-form>
+      <el-input v-model="keep"></el-input>
       <el-button v-on:click.prevent='submit2'>111</el-button>
+      <el-button @click='submit2'>33333333</el-button>
+      <el-button @dblclick='submit2'>4444444444</el-button>
     </el-form>
     </el-container>
   </div>
@@ -23,10 +44,81 @@ export default {
   data () {
     return {
       use: false,
-      msg: 'Welcome to Your Vue.js App'
+      show: false,
+      show2: false,
+      show3: true,
+      keep: '123',
+      sites: [
+        {
+          id: '1111',
+          name: 'guoliang'
+        },
+        {
+          id: '2222222222',
+          name: 'guoliang2'
+        }
+      ],
+      msg: 'Welcome to Your Vue.js App',
+      message: '<h1>1111111111111</h1>'
+    }
+  },
+  mounted () {
+    this.test()
+  },
+  watch: {
+    keep: function (val) {
+      this.message = val
+    }
+  },
+  computed: {
+    cal: function () {
+      return this.msg.split('').reverse().join(',')
+    }
+  },
+  filters: {
+    strtoupper: function (value) {
+      return value.toUpperCase()
+    },
+    indexof: function (value) {
+      return value.indexOf('o') + value.lastIndexOf('o')
+    },
+    search: function (value) {
+      return value.search('o')
+    },
+    substring: function (value) {
+      // substring(start, end)
+      return value.substring(3, 5)
+    },
+    substr: function (value) {
+      // substr(start, length)只有这个是长度
+      return value.substr(3, 5)
+    },
+    slice: function (value) {
+      // slice(start, end)
+      return value.slice(3, 5)
+    },
+    replace: function (value) {
+      // slice(start, end)
+      return value.replace('o', '00000000000000000')
+    },
+    replaceAll: function (value) {
+      // slice(start, end)
+      return value.replace(/o/g, '00000000000000000')
+    },
+    match: function (value) {
+      // slice(start, end)
+      return typeof (value.match(/o/g))
     }
   },
   methods: {
+    test: function () {
+      alert(1111)
+      console.log(this.$el)
+      // 所有的元素
+      console.log(this.$components)
+      console.log(this.$router)
+      console.log(this.$template)
+    },
     link: function () {
       this.$router.push({ name: 'HelloWorld1' })
     },
