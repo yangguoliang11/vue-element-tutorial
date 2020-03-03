@@ -1,19 +1,7 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li v-bind:class="{'class1':use}">
-        <a @click="link2">
-          链接到hello2
-        </a>
-      </li>
-    </ul>
-    <el-container style="height: 500px; border: 1px solid #eee">
-    <el-form>
-      <el-button v-on:click.prevent='submit2'>111</el-button>
-    </el-form>
-    </el-container>
+    <h2>这是Hello word2</h2>
   </div>
 </template>
 
@@ -22,20 +10,15 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      use: false,
       msg: 'Welcome to Your Vue.js App'
     }
   },
   methods: {
-    link: function () {
+    link () {
       this.$router.push({ name: 'HelloWorld1' })
     },
-    link2: function () {
+    link2 () {
       this.$router.push({ name: 'HelloWorld2' })
-    },
-    submit2: function () {
-      console.log(111111111111111)
-      alert(1111111111)
     }
   }
 }
@@ -57,9 +40,5 @@ li {
 }
 a {
   color: #42b983;
-}
-.class1 a{
-  color:blueviolet;
-  font-size:70px;
 }
 </style>
